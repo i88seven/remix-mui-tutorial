@@ -1,11 +1,12 @@
 import type { NavigateFunction } from '@remix-run/react'
 import type { User } from 'features/authentication/types'
 import type { companySchema } from 'features/company/types'
+import { $path } from 'remix-routes'
 import type { z } from 'zod'
 
 type Company = z.infer<typeof companySchema>
 
-export const onChangeLoginStatus = async ({
+export const onChangeLoginStatus = ({
   navigate,
   me,
   myCompanies,
@@ -18,12 +19,12 @@ export const onChangeLoginStatus = async ({
     return
   }
   if (me.isPasswordChanged === false) {
-    await navigate('/login/change-password')
+    navigate($path('/login/change-password'))
     return
   }
   if (myCompanies.length > 0) {
-    await navigate('/')
+    navigate($path('/'))
     return
   }
-  await navigate('/create-company')
+  navigate($path('/create-company'))
 }

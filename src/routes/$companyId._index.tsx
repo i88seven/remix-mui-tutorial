@@ -5,6 +5,7 @@ import { Text } from 'components/Text'
 import { TitleBox } from 'components/TitleBox'
 import Layout from 'layout/Main'
 import { useTranslation } from 'react-i18next'
+import { $path } from 'remix-routes'
 import { colorMap } from 'utils/color'
 
 const Home = () => {
@@ -31,7 +32,7 @@ const Home = () => {
           variant='contained'
           color='primary'
           onClick={() => {
-            navigate('/create-company')
+            navigate($path('/create-company'))
           }}
         />
       </Stack>

@@ -8,6 +8,7 @@ import { useMyCompanyList } from 'features/company/api/company'
 import Layout from 'layout/Empty'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { $path } from 'remix-routes'
 
 export const meta: MetaFunction = () => {
   return [{ name: 'theme-color', content: '#ffffff' }]
@@ -20,10 +21,10 @@ export default function SelectCompany() {
 
   useEffect(() => {
     if (myCompanies.data?.length === 0) {
-      navigate('/create-company')
+      navigate($path('/create-company'))
     }
     if (myCompanies.data?.length === 1) {
-      navigate(`/${myCompanies.data[0].id}`)
+      navigate($path('/:companyId', { companyId: myCompanies.data[0].id }))
     }
   }, [myCompanies.data])
 
@@ -52,8 +53,8 @@ export default function SelectCompany() {
                   variant='outlined'
                   color='primary'
                   styles={{ width: '100%' }}
-                  onClick={async () => {
-                    await navigate(`/${company.id}`)
+                  onClick={() => {
+                    navigate($path('/:companyId', { companyId: company.id }))
                   }}
                 />
               </div>

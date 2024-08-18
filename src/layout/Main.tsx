@@ -23,6 +23,7 @@ import { useDrawerContext } from 'providers'
 import type React from 'react'
 import { type ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { $path, type Routes } from 'remix-routes'
 import type { SidebarItemKeys } from 'types/sidebar'
 import { colorMap } from 'utils/color'
 import { sidebarItemKeys } from 'utils/sidebar'
@@ -44,8 +45,8 @@ export default function Main({ children, activePage }: Props) {
         return <HomeIcon />
     }
   }
-  const routerMap: Record<SidebarItemKeys, string> = {
-    home: `/${companyId}`,
+  const routerMap: Record<SidebarItemKeys, keyof Routes> = {
+    home: '/:companyId',
   }
 
   const user = useMe()
@@ -68,18 +69,18 @@ export default function Main({ children, activePage }: Props) {
       return
     }
     if (user.data.isPasswordChanged === false) {
-      navigate('/login/change-password')
+      navigate($path('/login/change-password'))
       setOpen(false)
     }
     if (myCompanies.data.length === 0) {
-      navigate('/create-company')
+      navigate($path('/create-company'))
       setOpen(false)
     }
     if (
       companyId &&
       !myCompanies.data.some((myCompany) => myCompany.id === companyId)
     ) {
-      navigate('/')
+      navigate($path('/'))
       setOpen(false)
     }
   }, [user.isFetched, myCompanies.isFetched])
@@ -87,9 +88,9 @@ export default function Main({ children, activePage }: Props) {
 
   if (company.isLoading) return <Loading />
 
-  const logout = async () => {
+  const logout = () => {
     logoutAsync()
-    await navigate('/login')
+    navigate($path('/login'))
     setOpen(false)
   }
 
@@ -119,7 +120,7 @@ export default function Main({ children, activePage }: Props) {
                 <ListItemButton
                   selected={isActive}
                   onClick={() => {
-                    navigate(routerMap[sidebarItemKey])
+                    navigate($path(routerMap[sidebarItemKey], { companyId }))
                     setOpen(false)
                   }}
                   sx={
@@ -183,7 +184,7 @@ export default function Main({ children, activePage }: Props) {
               <ListItemButton
                 selected={isActiveCompany}
                 onClick={() => {
-                  navigate(`/${companyId}/my-company`)
+                  navigate($path('/:companyId/my-company', { companyId }))
                   setOpen(false)
                 }}
                 sx={
@@ -229,7 +230,7 @@ export default function Main({ children, activePage }: Props) {
                     await logout()
                     return
                   }
-                  await navigate(`/${value}`)
+                  navigate($path('/:companyId', { companyId: value }))
                 }}
               />
             </ListItem>

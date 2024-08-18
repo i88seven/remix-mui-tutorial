@@ -22,6 +22,7 @@ import Layout from 'layout/Login'
 import { useState } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { $path } from 'remix-routes'
 import type { z } from 'zod'
 
 type FormSchema = z.infer<typeof companyCreateFormSchema>
@@ -52,7 +53,7 @@ export default function RegisterCompany() {
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     await postCompany(companyCreateRequestSchema.parse(data))
-    await navigate('/')
+    navigate($path('/'))
   }
 
   return (

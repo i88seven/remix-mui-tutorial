@@ -6,6 +6,7 @@ import { useLogout } from 'features/authentication/api/user'
 import { useMediaQuery } from 'hooks'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { $path } from 'remix-routes'
 
 type Props = {
   children: ReactNode
@@ -46,7 +47,7 @@ export default function Login({ children, canLogout }: Props) {
                 startIcon={<LogoutIcon />}
                 onClick={() => {
                   logout()
-                  navigate('/login')
+                  navigate($path('/login'))
                 }}
                 styles={
                   isSp

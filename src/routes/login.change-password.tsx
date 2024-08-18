@@ -17,6 +17,7 @@ import Layout from 'layout/Login'
 import { useEffect, useState } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { $path } from 'remix-routes'
 import type { z } from 'zod'
 
 type ChangePasswordSchema = z.infer<typeof changePasswordFormSchema>
@@ -51,10 +52,10 @@ export default function ChangePassword() {
     try {
       await updateMyPassword(changePasswordRequestSchema.parse(data))
       if (myCompanies.data && myCompanies.data.length > 0) {
-        await navigate('/')
+        navigate($path('/'))
         return
       }
-      await navigate('/create-company')
+      navigate($path('/create-company'))
     } catch (error) {
       setIsError(true)
     }
