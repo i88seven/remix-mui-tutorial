@@ -1,0 +1,53 @@
+{
+  "title": {
+    "home": "トップ",
+    "login": "ログイン",
+    "change-password": "パスワード変更",
+    "select-company": "会社選択",
+    "company-setting": "会社設定",
+    "description": "Remix SPA モードのチュートリアルとして作成しました"
+  },
+  "authentication": {
+    "create-account": "アカウントを新規作成",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "new-password": "新しいパスワード",
+    "new-password-confirm": "新しいパスワード（確認用）",
+    "privacy-policy-and-terms": "プライバシーポリシー・利用規約",
+    "privacy-policy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "privacy-policy-content": "プライバシーポリシー詳細",
+    "terms-content": "規約詳細",
+    "set-new-password": "新しいパスワードを設定してください。",
+    "select-company": "表示したい会社を選んでください",
+    "password-confirm": "パスワード（確認用）",
+    "error-on-login": "メールアドレスもしくはパスワードに誤りがあります。",
+    "warning-password": "英字大文字、英字小文字、数字を含む8文字以上のパスワードを入力してください",
+    "error-on-change-password": "パスワード変更に失敗しました。"
+  },
+  "company": {
+    "create-new-company": "新しい会社を登録",
+    "create": "会社登録",
+    "name": "会社名",
+    "company-type": "会社分類",
+    "prefecture": "都道府県",
+    "basic-information": "基本情報"
+  },
+  "invalid-path-error": "URLが正しくありません",
+  "please-select": "選択してください",
+  "next": "次へ",
+  "previous": "戻る",
+  "update": "編集",
+  "cancel": "キャンセル",
+  "complete": "決定",
+  "reload": "更新",
+  "close": "閉じる",
+  "required": "必須",
+  "example": {
+    "company": {
+      "name": "A会社"
+    }
+  }
+}
